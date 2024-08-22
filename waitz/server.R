@@ -77,7 +77,6 @@ function(input, output, session) {
         sval <- sel_quarters
       }
       legend_title <- "Location"
-      plot_title <- paste("Occupancy during", sval)
     } else {
       if (length(sel_academic_years) > 0) {
         mcol <- "academic_year"
@@ -90,7 +89,6 @@ function(input, output, session) {
       }
       scol <- "location"
       sval <- sel_locations
-      plot_title <- paste("Occupancy of", sval)
     }
 
     # `xcol` is the column that will eventually become the X axis.
@@ -129,7 +127,7 @@ function(input, output, session) {
       ggplot(aes(x=get(xcol), y=plot_data, color=get(mcol))) +
         geom_line(linewidth=1) +
         scale_y_continuous(limits=c(0, 100)) +
-        labs(title=plot_title, color=legend_title) +
+        labs(color=legend_title) +
         xlab(x_axis_label) +
         ylab("Mean occupancy percentage") +
         theme(plot.title=element_text(size=20))

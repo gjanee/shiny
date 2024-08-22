@@ -1,6 +1,8 @@
 .shiny-output-error-validation {
   color: red;
   font-weight: bold;
+  padding-top: 1em;
+  padding-left: 5%;
 }
 
 img {

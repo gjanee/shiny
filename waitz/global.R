@@ -1,3 +1,4 @@
+library(bslib)
 library(markdown)
 library(shiny)
 library(shinyWidgets)
