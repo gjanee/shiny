@@ -1,0 +1,18 @@
+id,parent_id,name,name_indented,capacity,earliest_count,is_active
+152,,UCSB Library,UCSB Library,2426,2019-09-17,True
+153,152,1st Floor,&nbsp;&nbsp;&nbsp;&nbsp;1st Floor,748,2019-09-17,True
+154,153,1st Floor Mountain,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st Floor Mountain,500,2019-09-17,True
+155,153,1st Floor Ocean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1st Floor Ocean,100,2019-09-17,True
+156,153,Art & Architecture,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Art & Architecture,148,2019-09-17,False
+157,152,2nd Floor,&nbsp;&nbsp;&nbsp;&nbsp;2nd Floor,711,2019-09-17,True
+158,157,2nd Floor Mountain,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd Floor Mountain,406,2019-09-17,True
+159,157,2nd Floor Ocean,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd Floor Ocean,305,2019-09-17,True
+160,152,4th Floor,&nbsp;&nbsp;&nbsp;&nbsp;4th Floor,520,2019-09-17,True
+161,152,5th - Quiet Floor,&nbsp;&nbsp;&nbsp;&nbsp;5th - Quiet Floor,40,2019-09-17,True
+162,152,6th - Quiet Floor,&nbsp;&nbsp;&nbsp;&nbsp;6th - Quiet Floor,160,2019-09-17,True
+163,152,7th - Quiet Floor,&nbsp;&nbsp;&nbsp;&nbsp;7th - Quiet Floor,123,2019-09-17,True
+164,152,8th - Quiet Floor,&nbsp;&nbsp;&nbsp;&nbsp;8th - Quiet Floor,80,2019-09-17,True
+165,152,Graduate Studies,&nbsp;&nbsp;&nbsp;&nbsp;Graduate Studies,44,2019-09-17,True
+166,165,2nd Mountain GRS,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd Mountain GRS,19,2019-09-17,True
+167,165,2nd Ocean GRS,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2nd Ocean GRS,12,2019-09-17,True
+168,165,8th Floor GRS,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8th Floor GRS,13,2019-09-17,True
