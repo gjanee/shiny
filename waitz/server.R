@@ -1,3 +1,12 @@
+filter_time_periods <- function(v, years=TRUE) {
+  # Given a vector of time periods, filter for academic years or quarters
+  b <- str_detect(v, "^\\d{4}-\\d{4}$")
+  if (!years) {
+    b <- !b
+  }
+  v[b]
+}
+
 function(input, output, session) {
 
   observeEvent(
@@ -5,12 +14,12 @@ function(input, output, session) {
     {
       if (length(input$time_periods) == length(time_period_menu)) {
         # The "Select All Years" button was pushed, and now every menu
-        # item is selected.  Update the menu so that only years are
-        # selected.
+        # item is selected.  Update the menu so that only academic
+        # years are selected.
         updatePickerInput(
           session=session,
           inputId="time_periods",
-          selected=time_period_menu[str_detect(time_period_menu, "^\\d{4}$")]
+          selected=filter_time_periods(time_period_menu, years=TRUE)
         )
       }
     }
@@ -27,30 +36,26 @@ function(input, output, session) {
 
     # Gather input selections
     sel_locations <- input$locations
-    sel_years <- as.integer(
-      input$time_periods[str_detect(input$time_periods, "^\\d{4}$")]
-    )
-    sel_quarters <- (
-      input$time_periods[!str_detect(input$time_periods, "^\\d{4}$")]
-    )
+    sel_academic_years <- filter_time_periods(input$time_periods, years=TRUE)
+    sel_quarters <- filter_time_periods(input$time_periods, years=FALSE)
 
     # Validate inputs
     validate(
       need(length(sel_locations) > 0, "Select at least one location"),
       need(
-        length(sel_years)+length(sel_quarters) > 0,
+        length(sel_academic_years)+length(sel_quarters) > 0,
         "Select at least one time period"
       ),
       need(
         (
           length(sel_locations) <= 1 |
-          length(sel_years)+length(sel_quarters) <= 1
+          length(sel_academic_years)+length(sel_quarters) <= 1
         ),
         "Can't select multiple locations and multiple time periods"
       ),
       need(
-        length(sel_years) == 0 | length(sel_quarters) == 0,
-        "Select years or quarters, not both"
+        length(sel_academic_years) == 0 | length(sel_quarters) == 0,
+        "Select academic years or quarters, not both"
       )
     )
 
@@ -64,9 +69,9 @@ function(input, output, session) {
     if (length(sel_locations) > 1) {
       mcol <- "location"
       mval <- sel_locations
-      if (length(sel_years) > 0) {
-        scol <- "year"
-        sval <- sel_years
+      if (length(sel_academic_years) > 0) {
+        scol <- "academic_year"
+        sval <- sel_academic_years
       } else {
         scol <- "quarter"
         sval <- sel_quarters
@@ -74,16 +79,17 @@ function(input, output, session) {
       legend_title <- "Location"
       plot_title <- paste("Occupancy during", sval)
     } else {
-      if (length(sel_years) > 0) {
-        mcol <- "year"
-        mval <- sel_years
+      if (length(sel_academic_years) > 0) {
+        mcol <- "academic_year"
+        mval <- sel_academic_years
+        legend_title <- "Academic year"
       } else {
         mcol <- "quarter"
         mval <- sel_quarters
+        legend_title <- "Quarter"
       }
       scol <- "location"
       sval <- sel_locations
-      legend_title <- "Year"
       plot_title <- paste("Occupancy of", sval)
     }
 
@@ -111,13 +117,10 @@ function(input, output, session) {
       group_by_at(c(mcol, xcol)) %>%
       summarize(plot_data=mean(percentage)*100)
 
-    # Column fixups.  Grouped columns must be factors.  But plotting
-    # continuous lines requires that the X axis not be a factor.
+    # Column fixups.  Plotting continuous lines requires that the X
+    # axis not be a factor, even an ordered factor.
     if (xcol == "weekday") {
       plot_data <- plot_data %>% mutate(weekday=as.integer(weekday))
-    }
-    if (mcol == "year") {
-      plot_data <- plot_data %>% mutate(year=as.factor(year))
     }
 
     # Perform final grouping and plot

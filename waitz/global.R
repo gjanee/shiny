@@ -36,15 +36,21 @@ quarters <- read_csv(
     start="D",
     end="D",
     start_prev_sunday="D",
-    thanksgiving_week_num="i"
+    thanksgiving_week_num="i",
+    academic_year="c"
   )
 )
 
 # Quarters as read in are in calendar order, which again, we want to
 # preserve.
 
+academic_years <- unique(quarters$academic_year) # preserves calendar order
+
 quarters <- quarters %>%
-  mutate(name=ordered(name, levels=quarters$name))
+  mutate(
+    name=ordered(name, levels=quarters$name),
+    academic_year=ordered(academic_year, levels=academic_years)
+  )
 
 # DATA
 
@@ -55,7 +61,7 @@ data <- read_csv(
     col_types=cols(
       location="c",
       timestamp="T",
-      year="i",
+      academic_year="c",
       quarter="c",
       quarter_week_num="i",
       weekday="c",
@@ -64,10 +70,12 @@ data <- read_csv(
       percentage="d"
     )
   ) %>%
-  filter(percentage < 1.5) # remove crazy large numbers
+  filter(percentage < 1.5) %>% # remove crazy large numbers
+  select(-timestamp, -count) # remove unused columns
 
 data <- data %>% mutate(
   location=ordered(location, levels=locations$name),
+  academic_year=ordered(academic_year, levels=academic_years),
   quarter=ordered(quarter, levels=quarters$name),
   weekday=ordered(weekday, levels=weekdays)
 )
@@ -80,18 +88,18 @@ time_period_menu <- c()
 time_period_menu_indented <- c()
 relevant_quarters <- quarters %>%
   filter(between(name, min(data$quarter), max(data$quarter)))
-year <- 0
+academic_year <- -1
 for (i in rownames(relevant_quarters)) {
   q <- relevant_quarters[i,]
-  if (year(q$start) != year) {
-    year <- year(q$start)
-    time_period_menu <- c(time_period_menu, as.character(year))
+  if (q$academic_year != academic_year) {
+    academic_year <- q$academic_year
+    time_period_menu <- append(time_period_menu, as.character(academic_year))
     time_period_menu_indented <- (
-      c(time_period_menu_indented, as.character(year))
+      append(time_period_menu_indented, as.character(academic_year))
     )
   }
-  time_period_menu <- c(time_period_menu, as.character(q$name))
-  time_period_menu_indented <- c(
+  time_period_menu <- append(time_period_menu, as.character(q$name))
+  time_period_menu_indented <- append(
     time_period_menu_indented,
     paste(indentation, as.character(q$name), sep="")
   )

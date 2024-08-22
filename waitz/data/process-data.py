@@ -32,7 +32,7 @@ outfile.writerow(
     [
         "location",
         "timestamp",
-        "year",
+        "academic_year",
         "quarter",
         "quarter_week_num",
         "weekday",
@@ -51,7 +51,7 @@ for r in csv.DictReader(sys.stdin):
         [
             r["location"],
             r["timestamp"],
-            ts.year,
+            q["academic_year"],
             q["name"],
             qwn,
             ts.strftime("%a"),

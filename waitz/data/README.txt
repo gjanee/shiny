@@ -32,6 +32,8 @@ start_prev_sunday
     For computational convenience, the Sunday previous to `start`
 thanksgiving_week_num
     For Fall quarters, the week number that Thanksgiving occurs in
+academic_year
+    The academic year the quarter belongs to
 
 data-raw.csv
 ------------
@@ -54,10 +56,10 @@ timestamp
 count
 percentage
     Copied from data-raw.csv
-year
-    The year of the timestamp
+academic_year
+    The academic year the timestamp falls in
 quarter
-    The name of the quarter the timestamp falls in
+    The quarter the timestamp falls in
 quarter_week_num
     The week number within the quarter
 weekday

@@ -43,7 +43,7 @@ navbarPage(
           inputId = "time_periods",
           label = "Time period(s):",
           choices = time_period_menu,
-          selected = max(data$year),
+          selected = max(data$academic_year),
           choicesOpt = list(content=time_period_menu_indented),
           options = pickerOptions(
             actionsBox=TRUE,

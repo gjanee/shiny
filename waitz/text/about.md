@@ -10,7 +10,7 @@ This Shiny application allows the Waitz data to be interactively explored.
 
 The raw data, obtained via the [Occuspace API](https://occuspace.io/api), consists of, for each location in the Library and for each hour of the day, the mean occupancy of the location over the hour.  Occupancy is reported as both raw counts and percentages of capacity.  The API can also return peak values and other variables such as dwell time, but those are unused here.
 
-Because Library use is driven by the academic calendar and comparisons are for the most part only relevant in that context, we restrict the data to Winter, Spring, and Fall quarters; breaks and summer sessions are excluded.
+Because Library use is driven by the academic calendar and comparisons are for the most part only relevant in that context, we restrict the data to Fall, Winter, and Spring quarters; breaks and summer sessions are excluded.
 
 To support consistent comparisons across and within quarters, we regularize the data as follows:
 
