@@ -36,7 +36,10 @@ navbarPage(
           choices = locations$name,
           selected = filter(locations, is.na(parent_id))$name,
           choicesOpt = list(content=locations$name_indented),
-          options = pickerOptions(actionsBox=TRUE),
+          options = pickerOptions(
+            actionsBox=TRUE,
+            selectedTextFormat="count > 1"
+          ),
           multiple = TRUE
         ),
         pickerInput(
@@ -47,7 +50,8 @@ navbarPage(
           choicesOpt = list(content=time_period_menu_indented),
           options = pickerOptions(
             actionsBox=TRUE,
-            selectAllText="Select All Years"
+            selectAllText="Select All Years",
+            selectedTextFormat="count > 1"
           ),
           multiple = TRUE
         ),
