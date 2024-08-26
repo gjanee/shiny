@@ -71,7 +71,7 @@ data <- read_csv(
       percentage="d"
     )
   ) %>%
-  filter(percentage < 1.5) %>% # remove crazy large numbers
+  filter(percentage < 2) %>% # remove crazy large numbers
   select(-timestamp, -count) # remove unused columns
 
 data <- data %>% mutate(
