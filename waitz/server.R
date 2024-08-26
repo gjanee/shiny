@@ -113,7 +113,8 @@ function(input, output, session) {
 
     plot_data <- plot_data %>%
       group_by_at(c(mcol, xcol)) %>%
-      summarize(plot_data=mean(percentage)*100)
+      summarize(plot_val=mean(percentage)*100) %>%
+      mutate(plot_val=pmin(plot_val, 100)) # clamp for display purposes
 
     # Column fixups.  Plotting continuous lines requires that the X
     # axis not be a factor, even an ordered factor.
@@ -124,7 +125,7 @@ function(input, output, session) {
     # Perform final grouping and plot
     plot <- plot_data %>%
       group_by_at(mcol) %>%
-      ggplot(aes(x=get(xcol), y=plot_data, color=get(mcol))) +
+      ggplot(aes(x=get(xcol), y=plot_val, color=get(mcol))) +
         geom_line(linewidth=1) +
         scale_y_continuous(limits=c(0, 100)) +
         labs(color=legend_title) +
