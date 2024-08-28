@@ -77,15 +77,18 @@ function(input, output, session) {
         sval <- sel_quarters
       }
       legend_title <- "Location"
+      palette <- filter(locations, name %in% mval)$color
     } else {
       if (length(sel_academic_years) > 0) {
         mcol <- "academic_year"
         mval <- sel_academic_years
         legend_title <- "Academic year"
+        palette <- filter(academic_years, name %in% mval)$color
       } else {
         mcol <- "quarter"
         mval <- sel_quarters
         legend_title <- "Quarter"
+        palette <- filter(quarters, name %in% mval)$color
       }
       scol <- "location"
       sval <- sel_locations
@@ -128,6 +131,7 @@ function(input, output, session) {
       ggplot(aes(x=get(xcol), y=plot_val, color=get(mcol))) +
         geom_line(linewidth=1) +
         scale_y_continuous(limits=c(0, 100)) +
+        scale_color_manual(values=palette) +
         labs(color=legend_title) +
         xlab(x_axis_label) +
         ylab("Mean occupancy percentage") +
