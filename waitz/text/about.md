@@ -19,3 +19,5 @@ To support consistent comparisons across and within quarters, we regularize the 
 - Quarters are adjusted to have the same length.  (All quarters have the same number of teaching days, but due to holidays, Fall quarters have 4 extra days and are 1 week longer than Winter and Spring quarters.)  For Fall quarters, we exclude the week containing Thanksgiving.  In this way all quarters have exactly 11 weeks, and weeks 10 and 11 are always dead week and finals week, respectively.
 
 Note that percentages are averaged over every day of the week and over every hour of the day, including nighttime.  This can cause percentages to appear lower than might be expected.  Check the "Restrict to building hours" box to compute averages over the Library's nominal open hours (8am-8pm, though actual hours vary some over the course of a quarter).
+
+The code and data behind this app can be viewed at <https://github.com/gjanee/shiny>.
