@@ -65,4 +65,4 @@ quarter_week_num
 weekday
     The abbreviated day of the week
 hour
-    The hour of the timestsamp
+    The hour of the timestamp
