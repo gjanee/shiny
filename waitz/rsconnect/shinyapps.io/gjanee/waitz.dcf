@@ -5,7 +5,7 @@ account: gjanee
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 12458756
-bundleId: 9039661
+bundleId: 9150511
 url: https://gjanee.shinyapps.io/waitz/
 version: 1
 asMultiple: FALSE
