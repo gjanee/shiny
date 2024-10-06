@@ -22,9 +22,9 @@ and view this application:
    Build a Docker image for the application using
    `docker built -t waitz .`, run using
    `docker run -p 8080:8080 waitz`, and view at
-   <span>https://localhost:8080</span>.  N.B.: the build process will
-   fail unless newer versions of R and packages, as recorded in the
-   renv lock file here, are used.
+   http[]()://localhost:8080.  N.B.: the build process will fail
+   unless newer versions of R and packages, as recorded in the renv
+   lock file here, are used.
 
 4. Using [shinylive](https://posit-dev.github.io/r-shinylive/), which
    obviates the need for a server and provides a means of running
